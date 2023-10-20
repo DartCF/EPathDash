@@ -1,0 +1,58 @@
+#studypg_info {
+	position: absolute;
+	top: 120px;
+	left: 315px;
+	color: #154224;
+}
+
+#pathpg_info {
+	position: absolute;
+	top: 120px;
+	left: 474px;
+	color: #154224;
+}
+
+#termpg_info {
+	position: absolute;
+	top: 120px;
+	left: 708px;
+	color: #154224;
+}
+
+#comppg_info {
+	position: absolute;
+	top: 120px;
+	left: 905px;
+	color: #154224;
+}
+
+#welcome_button{
+	color: #a6f5bb;
+	background-color: #008d4c;
+	border-color: #008d4c;
+	font-size: 18px;
+}
+
+.btn-basic {
+	color: ghostwhite;
+	background-color: #B6C3CC;
+}
+
+.btn-success {
+	background-color: #00a65a !important;
+}
+
+.logo {
+	font-size: 30px !important;
+	font-weight: bold !important;
+	letter-spacing: 0.1em !important;
+	color: #a6f5bb !important;
+}
+
+.sidebar-toggle {
+	color: #a6f5bb !important;
+}
+
+.link-text {
+	color: #a6f5bb !important;
+}
