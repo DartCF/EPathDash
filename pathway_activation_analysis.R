@@ -1,13 +1,26 @@
 ## PATHWAY ANALYSIS FOR EPathDash ##
 
+# This script utilizes the cellular pathway analysis described in the ESKAPE Act PLUS
+# application (https://journals.asm.org/doi/full/10.1128/msystems.00468-22) to conduct 
+# the analyses on a compendium of RNA-seq datasets the Gene Expression Omnibus. Before
+# exploring this script you should look at how the input database is constructed in
+# the data_collection.R script at https://github.com/DartCF/EPathDash.
+
 library(stringr)
 
 # directory definitions
-datadir<-"/Users/lilytaub/Documents/ESKAPE_Act_Plus_V3/"
-datadir2<-"/Users/lilytaub/Documents/DartCF/SummerCapstone/DataCollection/"
-keggdir<-"/Users/lilytaub/Documents/DartCF/SummerCapstone/DataCollection/KEGG_Results/"
-godir<-"/Users/lilytaub/Documents/DartCF/SummerCapstone/DataCollection/GO_Results/"
-appdir<-"/Users/lilytaub/Documents/DartCF/SummerCapstone/PathwayApplication/"
+
+# datadir defines the path where the database containing KEGG and GO pathway/gene mappings
+# is stored. This database is from the ESKAPE application (http://scangeo.dartmouth.edu/ESKAPE/).
+datadir<-"change_me"
+# datadir2 defines the path where the database created by data_collection.R is stored
+datadir2<-"change_me"
+# keggdir defines location for pathway analysis results using KEGG pathways
+keggdir<-"change_me"
+# godir defines location for pathway analysis results using GO terms
+godir<-"change_me"
+# appdir defines location where final Rdata file is saved
+appdir<-"change_me"
 
 # load in ESKAPE database
 load(paste(datadir,"KEGG_GO.Rdata",sep=""))

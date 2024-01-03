@@ -1,14 +1,25 @@
 ## DATA COLLECTION FOR EPathDash ##
 
+# This scripts collects the relevant information from the compendium of RNA-seq datasets used 
+# in the CF-Seq application. The resulting Rdata file is used in the pathway_activation_analysis.R
+# script to create the database for the E.PathDash application. Use of the external gene ID 
+# mapping tool from the Uniprot Consortium is required (https://www.uniprot.org/id-mapping). See section
+# "UniProt Translation" in this script for required file names for results returned by the tool.
+
 # libraries
 library(stringr)
 library(readxl)
 library(tidyverse)
 
-datadir="/Users/lilytaub/Documents/DartCF/SummerCapstone/CFSeq_Stuff/"
-outdir="/Users/lilytaub/Documents/DartCF/SummerCapstone/DataCollection/"
+# datadir defines the path to the Rdata file generated for the CF-Seq application
+# instructions can be found here: https://github.com/DartCF/cf-seq
+datadir="change_me"
+# outdir defines location to write temporary files used for gene ID translation
+outdir="change_me"
+# transdir defines location for results from gene ID translation using the Uniprot Consortium translation tool
+transdir="change_me"
 
-# data file from CFSeq application (data objects: CFSeq_Data and GenePathway_Data)
+# data file from CF-Seq application (data objects: CFSeq_Data and GenePathway_Data)
 load(paste(datadir,"Data.Rdata",sep=""))
 
 
@@ -210,8 +221,6 @@ write.csv(gse90021_gene_name,file=paste(outdir,"SSA_gene_names.txt",sep=""),row.
 
 # UniProt Translation -----------------------------------------------------
 
-# create gene ID translation dictionary
-transdir="/Users/lilytaub/Documents/DartCF/SummerCapstone/DataCollection/gene_translations/"
 # files with Uniprot translations, translated with https://www.uniprot.org/id-mapping
 files<-c("BT_Numbers.tsv","NWM_gene_names.tsv","NWM_Numbers.tsv","PA14_gene_names.tsv","PA14_Numbers.tsv",
          "PAO1_gene_names.tsv","PAO1_Numbers.tsv","SSA_gene_names.tsv","SSA_Numbers.tsv",
