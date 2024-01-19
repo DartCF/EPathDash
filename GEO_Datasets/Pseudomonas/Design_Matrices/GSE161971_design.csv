@@ -1,0 +1,9 @@
+Replicate,Genotype
+1,WT
+2,WT
+1,deltaSMC
+2,deltaSMC
+1,deltaMKSB
+2,deltaMKSB
+1,deltaSMC_deltaMKSB
+2,deltaSMC_deltaMKSB

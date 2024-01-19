@@ -1,0 +1,17 @@
+Replicate,Medium,Treatment
+1,Monoculture,Control
+2,Monoculture,Control
+3,Monoculture,Control
+4,Monoculture,Control
+1,Monoculture,meropenem_5mg
+2,Monoculture,meropenem_5mg
+3,Monoculture,meropenem_5mg
+4,Monoculture,meropenem_5mg
+1,Coculture,Control
+2,Coculture,Control
+3,Coculture,Control
+4,Coculture,Control
+1,Coculture,meropenem_5mg
+2,Coculture,meropenem_5mg
+3,Coculture,meropenem_5mg
+4,Coculture,meropenem_5mg

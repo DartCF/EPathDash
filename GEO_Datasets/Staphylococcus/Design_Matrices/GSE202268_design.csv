@@ -1,0 +1,13 @@
+Replicate,Genotype,Treatment
+1,ArlRS_pos,Glucose_pos
+2,ArlRS_pos,Glucose_pos
+3,ArlRS_pos,Glucose_pos
+1,ArlRS_pos,Glucose_neg
+2,ArlRS_pos,Glucose_neg
+3,ArlRS_pos,Glucose_neg
+1,ArlRS_neg,Glucose_pos
+2,ArlRS_neg,Glucose_pos
+3,ArlRS_neg,Glucose_pos
+1,ArlRS_neg,Glucose_neg
+2,ArlRS_neg,Glucose_neg
+3,ArlRS_neg,Glucose_neg
