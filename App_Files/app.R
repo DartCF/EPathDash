@@ -1177,8 +1177,10 @@ server <- function(input, output, session) {
             }
           }
         }
+        Pathway_Results_DF <- Pathway_Results_DF[2:nrow(Pathway_Results_DF),]
+        Pathway_Results_DF$Median.logFC <- as.numeric(Pathway_Results_DF$Median.logFC)
         output$Pathway_Studies <- DT::renderDataTable(
-          Pathway_Results_DF[2:nrow(Pathway_Results_DF),],
+          Pathway_Results_DF,
           rownames=F,
           escape=F,
           selection="single"
@@ -1195,7 +1197,7 @@ server <- function(input, output, session) {
           contentType = "text/csv"
         )
         
-        rv$study_pathway_df <- Pathway_Results_DF[2:nrow(Pathway_Results_DF),]
+        rv$study_pathway_df <- Pathway_Results_DF
       
       } #END IF
       else{ # Reset Button hit
@@ -1314,10 +1316,13 @@ server <- function(input, output, session) {
           }
         }
         
-        rv$study_term_df<-Term_Results_DF[2:nrow(Term_Results_DF),]
+        Term_Results_DF <- Term_Results_DF[2:nrow(Term_Results_DF),]
+        Term_Results_DF$Median.logFC <- as.numeric(Term_Results_DF$Median.logFC)
+        
+        rv$study_term_df<-Term_Results_DF
         
         output$Term_Studies <- DT::renderDataTable(
-          Term_Results_DF[2:nrow(Term_Results_DF),],
+          Term_Results_DF,
           rownames=F,
           escape=F,
           selection="single"
