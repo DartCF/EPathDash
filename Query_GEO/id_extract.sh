@@ -11,10 +11,10 @@ script_info
 outdir=$1
 
 # get XML files from query
-PseudomonasHits=$( exec curl curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22pseudomonas%20aeruginosa%22+AND+%22Pseudomonas%20aeruginosa%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
-BacteroidesHits=$( exec curl curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22bacteroides%20thetaiotaomicron%22+AND+%22Bacteroides%20thetaiotaomicron%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
-StaphylococcusHits=$( exec curl curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22staphylococcus%20aureus%22+AND+%22Staphylococcus%20aureus%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
-StreptococcusHits=$( exec curl curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22streptococcus%20sanguinis%22+AND+%22Streptococcus%20sanguinis%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
+PseudomonasHits=$( exec curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22pseudomonas%20aeruginosa%22+AND+%22Pseudomonas%20aeruginosa%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
+BacteroidesHits=$( exec curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22bacteroides%20thetaiotaomicron%22+AND+%22Bacteroides%20thetaiotaomicron%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
+StaphylococcusHits=$( exec curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22staphylococcus%20aureus%22+AND+%22Staphylococcus%20aureus%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
+StreptococcusHits=$( exec curl "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=gds&term=%22streptococcus%20sanguinis%22+AND+%22Streptococcus%20sanguinis%22%5Borganism%5D+AND+%22Expression%20profiling%20by%20high%20throughput%20sequencing%22%5BFilter%5D&reldate=885&datetype=pdat&retmax=1000&usehistory=y" --silent)
 
 HitList=( "$PseudomonasHits" "$BacteroidesHits" "$StaphylococcusHits" "$StreptococcusHits" )
 IdVars=( "PseudomonasIds" "BacteroidesIds" "StaphylococcusIds" "StreptococcusIds" )
