@@ -32,6 +32,40 @@ KEGG<-KEGG[c("pau","pae","bth","saa","sae","ssa")]
 GO<-GO[c("pau","pae","bth","saa","sae","ssa")]
 Path_List<-Path_List[c("pau","pae","bth","saa","sae","ssa")]
 
+# Helper Functions --------------------------------------------------------
+
+# Some RNA-seq datasets have different gene encodings for the same product protein as 
+# separate rows in the dataset. After UniProt translation, this resulted in a DGE analysis
+# dataframe with duplicate UniProt IDs. This causes an issue for ESKAPE logic, as it assumes
+# all UniProt IDs in a dataset are unique. check_duplicates and resolve_duplicates identify 
+# datasets where this is the case and removes duplicates by keeping the entry with the 
+# smallest p-value. This is to maximize sensitivity of the binomial test, as we are keeping 
+# the entry with the most information. 
+
+check_duplicates<-function(DGE_data){
+  total<-nrow(DGE_data)
+  num_unique<-length(unique(DGE_data$Uniprot))
+  if (total==num_unique){
+    return(FALSE) # there are no duplicate Uniprot IDs
+  }
+  return(TRUE) # there are duplicate Uniprot IDs
+}
+
+resolve_duplicates<-function(DGE_data){
+  # Sort the dataframe based on the p-value in ascending order
+  DGE_sorted = DGE_data[order(DGE_data$PValue), ]
+  # Identify and keep the first occurrence of each unique Uniprot ID,
+  # keeping those entries w/ the smallest p-value
+  DGE_unique_uniprot = DGE_sorted[!duplicated(DGE_sorted$Uniprot), ]
+  return(DGE_unique_uniprot)
+}
+
+
+# Pathway Activation Functions --------------------------------------------
+
+# These functions implement the statistical test used in ESKAPE Act Plus to identifiy 
+# activated and repressed KEGG pathways and GO Terms from DGE data.
+
 
 KEGGActivationAnalysis<-function(strain,Results,studyID,comp){
   strain_dict<-list("PA14"="pau","PAO1"="pae","VPI-5482"="bth","USA300"="saa","Newman"="sae","SK36"="ssa")
@@ -161,6 +195,13 @@ for (species in names(For_ESKAPE)){
         next
       }else{
         input_data<-data.frame(For_ESKAPE[[species]][[study]][[comp]])
+        if (check_duplicates(input_data)){
+          print(comp)
+          print("resolving duplicates...")
+          print(paste0("before:",nrow(input_data)))
+          input_data <- resolve_duplicates(input_data)
+          print(paste0("after:",nrow(input_data)))
+        }
         colnames(input_data)<-c("V1","V2")
         print(study)
         comp<-str_split_1(comp," Full Results")[1]
@@ -199,7 +240,11 @@ for (species in names(For_ESKAPE)){
         next
       }else{
         comp_rename<-str_split_1(comp," Full Results")[1]
-        Study_LogFC_Genes[[study]][[comp_rename]]<-For_ESKAPE[[species]][[study]][[comp]]
+        logFC_data<-For_ESKAPE[[species]][[study]][[comp]]
+        if(check_duplicates(logFC_data)){
+          logFC_data<-resolve_duplicates(logFC_data)
+        }
+        Study_LogFC_Genes[[study]][[comp_rename]]<-logFC_data
       }
     }
   }

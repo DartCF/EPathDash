@@ -129,10 +129,14 @@ for (species in names(App_Data)){
   NWMN_RS_dict<-read_xlsx(paste(getwd(),"GeneSpecificInformation_Newman.xlsx",sep="/"), col_names = T)
   NWMN_UniProt_dict<-read.csv(paste0(cfseq_dir,"SA_Newman.csv"),header = T) %>% 
     select(UNIPROTKB,KEGG) %>% 
+    drop_na() %>% 
     mutate(GENENAME=str_split_i(KEGG,":",2))
+  NWMN_UniProt_dict<-distinct(NWMN_UniProt_dict)
+  
   USA300_RS_dict<-read_xlsx(paste(getwd(),"GeneSpecificInformation_USA300_FPR3757.xlsx",sep="/"),col_names = T)
   USA300_UniProt_dict <- read.csv(paste0(cfseq_dir,"SA_USA300.csv"),header = T) %>% 
     select(UNIPROTKB, GENENAME)
+  USA300_UniProt_dict <- distinct(USA300_UniProt_dict)
   
   # dictionary for SK36 gene translations
   SK36_RS_dict<-read_xlsx(getwd(),"GSE150593_SK36_Translation.XLSX",sheet=2)
@@ -140,6 +144,7 @@ for (species in names(App_Data)){
     select(UNIPROTKB,KEGG) %>% 
     mutate(GENENAME=str_split_i(KEGG,":",2)) %>% 
     select(-KEGG)
+  SK36_UniProt_dict<-distinct(SK36_UniProt_dict)
 }
 
 # GSE125646 
@@ -245,12 +250,13 @@ PAO1_gene_names<-union(union(union(union(gse130190_gene_name,gse136111_gene_name
                              gse163248_gene_name),
                        gse179150_gene_name)
 PA14_Numbers<-union(union(union(union(union(union(union(union(gse142464_PA14,gse148597_PA14),
-                                 gse156995),
-                           gene_ids[["GSE166602"]]),
-                     gse87213_PA14),
-                     gene_ids[["GSE142448"]]),
-                     gse125646),
-                     gse185398_PA14)
+                               gse156995),
+                          gene_ids[["GSE166602"]]),
+                    gse87213_PA14),
+                    gene_ids[["GSE142448"]]),
+                    gse124385_PA14),
+                    gse125646),
+                    gse185398_PA14)
 PA14_gene_names<-union(gse142464_gene_name,gse148597_gene_name)
 
 write.csv(PAO1_Numbers,file=paste(outdir,"PA01_Numbers.txt",sep=""),row.names = F,quote = F)
