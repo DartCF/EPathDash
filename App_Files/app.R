@@ -189,25 +189,27 @@ ui <- dashboardPage(
     ), #Summary_Row_1
     
     fluidRow(id ="Summary_Row_2",
-      box(collapsible = T, 
+      box(collapsible = T, width=9,
         background = "green",
         id="Summary_Boxplot_1",
         title="Significant KEGG Pathways",
         uiOutput(outputId = "Boxplot_1_Text"),
         shinycssloaders::withSpinner(
-          plotlyOutput("KEGGBoxPlot"), type=5, color="#154224"
+          plotlyOutput("KEGGBoxPlot",height = "100%"), type=5, color="#154224"
         )
-      ),
-      box(collapsible = T,
+      )
+    ), # Summary_Row_2
+    fluidRow(id = "Summary_Row_2a",
+      box(collapsible = T, width=9,
         background="green",
         id="Summary_BoxPlot_2",
         title="Significant GO Terms",
         uiOutput(outputId = "Boxplot_2_Text"),
         shinycssloaders::withSpinner(
-          plotlyOutput("GOBoxPlot"), type=5, color="#154224"
+          plotlyOutput("GOBoxPlot",height = "100%"), type=5, color="#154224"
         )
       )
-    ), # Summary_Row_2
+    ), # Summary_Row_2a
     
     fluidRow(id= "Summary_Row_3",
       box( width=12,collapsible = T,
@@ -385,6 +387,7 @@ server <- function(input, output, session) {
   #Hide windows until study is selected
   {
     shinyjs::hide(id = "Summary_Row_2")
+    shinyjs::hide(id = "Summary_Row_2a")
     shinyjs::hide(id = "Summary_Row_3")
     shinyjs::hide(id = "Summary_Row_4")
     shinyjs::hide(id = "Pathway_Row_1")
@@ -713,6 +716,7 @@ server <- function(input, output, session) {
     
     {
       shinyjs::show(id = "Summary_Row_2")
+      shinyjs::show(id = "Summary_Row_2a")
       shinyjs::hide(id = "Summary_Row_3")
       shinyjs::hide(id = "Summary_Row_4")
       shinyjs::hide(id="Study_Info")
@@ -750,6 +754,7 @@ server <- function(input, output, session) {
     
     {
       shinyjs::show(id = "Summary_Row_2")
+      shinyjs::show(id = "Summary_Row_2a")
       shinyjs::show(id = "Summary_Row_3")
       shinyjs::show(id = "Summary_Row_4")
       shinyjs::show(id="Study_Info")
@@ -970,7 +975,7 @@ server <- function(input, output, session) {
                   type = "box",
                   showlegend=F
           ) %>% layout(
-            yaxis=list(tickangle=-45),
+            yaxis=list(tickfont=list(size=8)),
             plot_bgcolor="#D8E0E5",
             paper_bgcolor="#D8E0E5"
           ) %>% style(
@@ -1027,7 +1032,7 @@ server <- function(input, output, session) {
                   type = "box",
                   showlegend=F
           ) %>% layout(
-            yaxis=list(tickangle=-45),
+            yaxis=list(tickfont=list(size=8)),
             plot_bgcolor="#D8E0E5",
             paper_bgcolor="#D8E0E5"
           ) %>% style(
@@ -1079,6 +1084,7 @@ server <- function(input, output, session) {
       
       shinyjs::hide(id="Study_Info")
       shinyjs::hide(id = "Summary_Row_2")
+      shinyjs::hide(id = "Summary_Row_2a")
       shinyjs::hide(id = "Summary_Row_3")
       shinyjs::hide(id = "Summary_Row_4")
     }
@@ -1092,6 +1098,7 @@ server <- function(input, output, session) {
         shinyjs::show(id="Study_Info")
         shinyjs::show(id = "Summary_Row_1")
         shinyjs::show(id = "Summary_Row_2")
+        shinyjs::show(id = "Summary_Row_2a")
         shinyjs::show(id = "Summary_Row_3")
         shinyjs::show(id = "Summary_Row_4")
         shinyjs::hide(id = "Pathway_Row_1")
@@ -1116,6 +1123,7 @@ server <- function(input, output, session) {
         shinyjs::hide(id="Study_Info")
         shinyjs::hide(id = "Summary_Row_1")
         shinyjs::hide(id = "Summary_Row_2")
+        shinyjs::hide(id = "Summary_Row_2a")
         shinyjs::hide(id = "Summary_Row_3")
         shinyjs::hide(id = "Summary_Row_4")
         shinyjs::hide(id = "Term_Row_1")
@@ -1255,6 +1263,7 @@ server <- function(input, output, session) {
         shinyjs::hide(id="Study_Info")
         shinyjs::hide(id = "Summary_Row_1")
         shinyjs::hide(id = "Summary_Row_2")
+        shinyjs::hide(id = "Summary_Row_2a")
         shinyjs::hide(id = "Summary_Row_3")
         shinyjs::hide(id = "Summary_Row_4")
         shinyjs::hide(id = "Pathway_Row_1")
@@ -1396,6 +1405,7 @@ server <- function(input, output, session) {
         shinyjs::hide(id="Study_Info")
         shinyjs::hide(id = "Summary_Row_1")
         shinyjs::hide(id = "Summary_Row_2")
+        shinyjs::hide(id = "Summary_Row_2a")
         shinyjs::hide(id = "Summary_Row_3")
         shinyjs::hide(id = "Summary_Row_4")
         shinyjs::hide(id = "Pathway_Row_1")
