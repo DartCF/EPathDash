@@ -1,5 +1,7 @@
 # E.PathDash
 
+This repository contains the R shiny application code, data collection and analysis scripts, and cleaned data files used to create the E.PathDash web application. 
+
 ### Introduction
 
 E.PathDash is a Shiny application that facilitates re-analysis of gene expression data from pathogens clinically relevant to Cystic Fibrosis. The application runs pathway activation analysis of KEGG pathways and gene ontology (GO) terms for a set of RNA-seq datasets compiled from the [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/). The datasets cover the pathogens *Pseudomonas aeruginosa*, *Staphylococcus aureus*, *Streptococcus sanguinis*, and *Bacteroides thetaiotaomicron*. Users can rapidly toggle between experimental comparisons and different studies of the same phenomenon, enabling them to judge the extent to which observed responses are reproducible.
