@@ -4,9 +4,11 @@ This repository contains the R shiny application code, data collection and analy
 
 ### Introduction
 
-E.PathDash is a Shiny application that facilitates re-analysis of gene expression data from pathogens clinically relevant to Cystic Fibrosis. The application runs pathway activation analysis of KEGG pathways and gene ontology (GO) terms for a set of RNA-seq datasets compiled from the [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/). The datasets cover the pathogens *Pseudomonas aeruginosa*, *Staphylococcus aureus*, *Streptococcus sanguinis*, and *Bacteroides thetaiotaomicron*. Users can rapidly toggle between experimental comparisons and different studies of the same phenomenon, enabling them to judge the extent to which observed responses are reproducible.
+E.PathDash is a Shiny application that facilitates re-analysis of gene expression data from pathogens clinically relevant to respiratory diseases. The application runs pathway activation analysis of KEGG pathways and Gene Ontology (GO) terms for a set of RNA-seq datasets compiled from the [Gene Expression Omnibus](https://www.ncbi.nlm.nih.gov/geo/). The datasets cover the pathogens *Pseudomonas aeruginosa*, *Staphylococcus aureus*, *Streptococcus sanguinis*, and *Bacteroides thetaiotaomicron*. Users can rapidly toggle between experimental comparisons and different studies of the same phenomenon, enabling them to judge the extent to which observed responses are reproducible.
 
 In addition to exploring analysis results within the application interface, users can download high quality images that communicate pathway activation, differential gene expression tables, and raw count data. The application is freely available at scangeo.dartmouth.edu/EPathDash/. 
+
+The application's compedium of publicly available RNA-seq datasets consists of 48 studies that cover 548 samples and 404 unique treatment comparisons.
 
 ### Related applications
 
@@ -32,7 +34,7 @@ This folder contains the files used to construct the data objects for E.PathDash
 
 **/Query_GEO**
 
-This folder contains the bash scripts used to query the NCBI's GEO Datasets database for RNA-seq datasets from the bacterial species and strains of interest. These scripts were used to collect the raw data for E.PathDash. 
+This folder contains the bash scripts used to query the NCBI's GEO Datasets database for RNA-seq datasets from the bacterial species and strains of interest. These scripts were used to collect the raw data for E.PathDash in the second wave of data collection, which identified relevant GEO datasets posted between August 2021 and December 2023. 
 
 - **id_extract.sh** gets the UIDs for datasets returned by a particular query string
 
@@ -46,7 +48,7 @@ This folder contains the bash scripts used to query the NCBI's GEO Datasets data
 
 **data_collection.R**
 
-This script was used to pull relevant datasets from CF-Seq, combine these with the new datasets identified using the scripts in the **Query_GEO** folder, and translate all gene identifiers to a consistent encoding schema (UniprotKB) in preparation for pathway activation analysis. 
+This script was used to pull relevant datasets from CF-Seq (first wave of data collection), combine these with the new datasets identified using the scripts in the **Query_GEO** folder, and translate all gene identifiers to a consistent encoding schema (UniprotKB) in preparation for pathway activation analysis. 
 
 **pathway_activation_analysis.R**
 
